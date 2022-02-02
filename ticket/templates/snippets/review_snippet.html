@@ -1,0 +1,56 @@
+{% load static %}
+
+<p class="card-text">
+<div class="row">
+    <div class="col-6">
+        {% if user == post.user %}
+            <p>Vous avez écrit une review</p>
+        {% else %}
+            <p>Critique écrite par {{ post.user }}</p>
+        {% endif %}
+    </div>
+    <div class="col-6 text-right">
+        {{ post.time_created }}
+    </div>
+</div>
+<div>
+    <p>Titre: {{ post.headline }}</p>
+</div>
+<div>
+     <p>Commentaire: {{ post.body }}</p>
+</div>
+<div>
+     <p>Note: {{ post.rating }} étoiles</p>
+</div>
+<div>
+    {% if user == post.user%}
+        <a class="btn btn-primary" href="{% url 'review_edit' post.id %}">Modifier</a>
+        <a class="btn btn-primary" href="{% url 'review_delete' post.id %}">Supprimer</a>
+    {% endif %}
+<br>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Ticket - {{ post.ticket.user.username }}</h5>
+
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ post.ticket.title }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ post.ticket.description }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {% if post.ticket.image %}
+            <p><img src="{{ post.ticket.image.url }}" alt="{{ post.ticket.title }}" style="max-width: 200px;"></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</p>

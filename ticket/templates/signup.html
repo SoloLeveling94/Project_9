@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="card">
+        <h4 class="card-header">
+        Inscrivez-vous
+        </h4>
+        <div class="card-body">
+            <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <a class="btn btn-primary" href="{% url 'home' %}">Retourner</a>
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

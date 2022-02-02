@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Followers List{% endblock %}
+
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %} >{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="container">
+
+    <div class="card">
+        <h4 class="card-header text-center">
+            Suivre d'autres utilisateurs
+        </h4>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="col text-center">
+                    {{ form.as_p }}
+
+                    <button class="btn btn-primary" type="submit">Envoyer</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+         <h4 class="card-header text-center">
+            Abonnements
+        </h4>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for user in followers %}
+                <li class="list-group-item">
+                    <div class="d-flex">
+                        <div class="me-auto p-2">
+                            {{ user.followed_user }}
+                        </div>
+                        <div class="ms-auto p-2">
+                            <a href="{% url 'follower_delete' user.id %}" class="btn btn-primary">Désabonner</a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h4 class="card-header text-center">
+            Abonnés
+        </h4>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for user in users %}
+                <li class="list-group-item">{{ user.user }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

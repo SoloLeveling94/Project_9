@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Post
+{% endblock title%}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for post in posts %}
+            <div class="card">
+                <div class="card-body">
+                    {% if post.content_type == 'TICKET' %}
+                    {% include 'snippets/ticket_snippet.html' %}
+
+                    {% elif post.content_type == 'REVIEW' %}
+                    {% include 'snippets/review_snippet.html'  %}
+
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

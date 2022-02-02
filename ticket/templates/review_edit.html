@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit post{% endblock title %}
+{% block content %}
+       <div class="d-flex justify-content-center">
+    <div class="card">
+        <h4 class="card-header">
+        Modifier une review
+        </h4>
+        <div class="card-body">
+            <form method="post" enctype = "multipart/form-data">
+            {% csrf_token %}
+{#            {{ form|crispy }}#}
+                 <div class="card">
+                    <div class="card-header">
+                        <h3>Review</h3>
+                    </div>
+                   <div class="card-body">
+                        <h4>Titre</h4>
+                        <p>{{ form.headline }}</p>
+                        <h4>Note</h4>
+                        <p>{{ form.rating }}</p>
+                        <h4>Commentaire</h4>
+                        <p>{{ form.body  }}</p>
+                    </div>
+                </div>
+
+
+
+
+              <button type="submit" class="btn btn-primary" value="Update">Envoyer</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

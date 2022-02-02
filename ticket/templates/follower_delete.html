@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete a follower{% endblock title %}
+{% block content %}
+<div class="container">
+
+    <div class="card mb-3">
+        <h4 class="card-header text-center">
+            Supprimer un follow user
+        </h4>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                <div class="col text-center">
+                   <p>Voulez-vous arrêter de suivre cette personne "{{ userfollows.followed_user }}"?</p>
+                    <button class="btn btn-primary" type="submit">Confirmer</button>
+                </div>
+                    </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

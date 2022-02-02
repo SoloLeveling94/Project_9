@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Create a new review from a ticket{% endblock title %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="row">
+        <div class="col">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h2>Créer une critique</h2>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Vous êtes en train de poster en réponse à {{ ticket.user}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>{{ ticket.user}} a demandé une critique {{ ticket.time_created}}</p>
+                        <p>{{ ticket.title }}</p>
+                        <p>{{ ticket.description }}</p>
+                        {% if ticket.image %}
+                            <p><img src="{{ ticket.image.url }}" alt="{{ ticket.title }}" style="max-width: 250px";></p>
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Review</h3>
+                    </div>
+                   <div class="card-body">
+                        <h4>Titre</h4>
+                        <p>{{ review_form.headline }}</p>
+                        <h4>Note</h4>
+                        <p>{{ review_form.rating }}</p>
+                        <h4>Commentaire</h4>
+                        <p>{{ review_form.body  }}</p>
+                    </div>
+                </div>
+                <br>
+                <input class="btn btn-primary" type="submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

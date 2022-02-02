@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit a ticket{% endblock title %}
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="card">
+        <h4 class="card-header">
+        Ticket Detail
+        </h4>
+        <div class="card-body">
+          <h2>{{ ticket.title }}</h2>
+          {% if ticket.image %}
+            <img src="{{ ticket.image.url }}" alt="{{ ticket.title }}" style="max-width: 200px";>
+          {% endif %}
+            <p>{{ ticket.created_time }}</p>
+            <p>{{ ticket.user }}</p>
+        </div>
+    </div>
+</div>
+
+
+<a href="{% url 'ticket_edit' ticket.pk %}">+ Edit Ticket Post</a>
+<p><a href="{% url 'ticket_delete' ticket.pk %}">+ Delete Ticket Post</a></p>
+
+{% endblock content %}

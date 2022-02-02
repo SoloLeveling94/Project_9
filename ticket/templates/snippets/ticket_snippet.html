@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="card">
+    <div class="row">
+        <div class="row">
+            <div class="col-6">
+               {% if user == post.user %}
+                    <p>Vous avez écrit un ticket</p>
+                {% else %}
+                    <p>Ticket écrit par {{ post.user }}</p>
+                {% endif %}
+            </div>
+            <div class="col-6 text-right">
+                {{ post.time_created }}
+            </div>
+        </div>
+        <div class="row">
+            <p>Titre: {{ post.title }}<p/>
+
+            <p>{{ post.description }}</p>
+            {% if post.image %}
+                <p><img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width: 200px;"></p>
+            {% endif %}
+            </p>
+
+            <p>{% if not post.review_add %}
+
+
+                <div class="col text-right" >
+                    <a class="btn btn-primary"  href="{% url 'reviewticket_new' post.id %}">Ajouter une critique</a>
+                </div>
+            {% endif %}
+
+
+            </p>
+
+        <div class="col-6 text-right">
+            {% if user == post.user%}
+                <a class="btn btn-primary" href="{% url 'ticket_edit' post.id %}">Modifier</a>
+            <a class="btn btn-primary" href="{% url 'ticket_delete' post.id %}">Supprimer</a>
+            {% endif %}
+        </div>
+        </br>
+        </div>
+    </div>
+</div>

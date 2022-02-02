@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Edit a ticket{% endblock title %}
+{% block content %}
+
+<div class="d-flex justify-content-center">
+    <div class="card">
+        <h4 class="card-header">
+        Modifier un ticket
+        </h4>
+        <div class="card-body">
+            <form method="post" enctype = "multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+              <button type="submit" class="btn btn-primary" value="Update">Envoyer</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="post-entry">
+<h2>{{ object.headline }}</h2>
+    <p>{{ object.user }}</p>
+    <p>{{ object.body }}</p>
+    <p>{{ object.rating }}</p>
+    <p>{{ object.ticket }}</p>
+</div>
+
+<a href="{% url 'review_edit' review.pk %}">+ Edit Review Post</a>
+<p><a href="{% url 'review_delete' review.pk %}">+ Delete Review Post</a></p>
+{% endblock content %}

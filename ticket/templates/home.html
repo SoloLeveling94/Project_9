@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{ % load static %}
+{% block title %}
+    Flux
+{% endblock title%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-evenly">
+            <a class="btn btn-primary" href="{% url 'ticket_new' %}">Demander une critique</a>
+            <a class="btn btn-primary" href="{% url 'review_new' %}">Créer une critique</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            {% for post in posts %}
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+
+                        {% if post.content_type == 'TICKET' %}
+                            {% include 'snippets/ticket_snippet.html'%}
+
+                        {% elif post.content_type == 'TICKET_FROM_FOLLOWER' %}
+                            {% include 'snippets/ticket_snippet.html' %}
+
+                        {% elif post.content_type == 'REVIEW' %}
+                            {% include 'snippets/review_snippet.html' %}
+
+                        {% elif post.content_type == 'REVIEW_FROM_FOLLOWER' %}
+                            {% include 'snippets/review_snippet.html'  %}
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+</div>
